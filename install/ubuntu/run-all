@@ -1,0 +1,8 @@
+for script in install-*; do
+    if [ -f "$script" ]; then
+        echo "Running $script"
+        bash "$script"
+        echo "$script completed"
+    fi
+done
+
