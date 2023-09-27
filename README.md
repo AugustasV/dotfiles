@@ -1,3 +1,3 @@
-# Dot files
+# Dotfiles
 
-Settings to setup new muchine
+These dotfiles are my personal configuration files for Linux machine setup.
