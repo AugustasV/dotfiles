@@ -2,3 +2,5 @@
 	email = reg1nt1z@gmail.com
 	name = AugustasV
 	signingkey = 340D057BA081E103
+[commit]
+	gpgsign = true
