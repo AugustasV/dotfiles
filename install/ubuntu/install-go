@@ -5,18 +5,12 @@
 # environment variables (which need to be set or changed in this script
 # or after install completes):
 #
-#     PATH="~/.local/bin:~/.local/bin/go/bin:$PATH"
 #     GOOS=linux
 #     GOARCH=amd64
 #     GOPATH="~/.local/go"
-#     GOBIN="~/.local/go/bin"
-#
-# Note that the downloaded tar file is not removed and can be found in
-# either $DOWNLOADS or /tmp.
 
 # Install libc6-dev so Go would work properly
 sudo apt install libc6-dev -y
-
 
 true "${TARGETDIR:="$HOME/.local"}"
 
@@ -50,7 +44,13 @@ install_latest_go() {
 	path="$(fetch)"
 	[[ -z "$path" ]] && echo "unable to fetch go tarball" 1>&2 && return 1
 	rm -rf "$dir/go" && tar -C "$dir" -xzf "$path" # rm is required by instructions
-	echo "Add $dir/go/bin to your path and optionally set GOBIN=~/.local/bin" 1>&2
+
+	# Update PATH and set GOBIN
+	local go_bin_dir="$dir/go/bin"
+	echo "export PATH=\"\$PATH:$go_bin_dir\"" >> "$HOME/.bashrc"
+	echo "export GOBIN=\"$dir/go/bin\"" >> "$HOME/.bashrc"
+	echo "Go has been installed to $go_bin_dir. GOBIN is set to $GOBIN."
+	source "$HOME/.bashrc"
 }
 
 install_latest_go "$@"
