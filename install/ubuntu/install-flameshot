@@ -1,3 +1,4 @@
 #!/bin/sh
 
-sudo apt flameshot -y
+sudo apt install flameshot -y
+echo "flameshot has been installed"

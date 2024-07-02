@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo apt-get install -y awscli
+echo "AWS has been installed"
